@@ -109,7 +109,7 @@ export default function HeroSection() {
               Trusted by 200+ healthcare clients
             </p>
 
-            <h1 className="mt-5 text-[2.2rem] leading-[1.05] tracking-tight text-white sm:text-[2.2rem] lg:text-7xl">
+            <h1 className="mt-5 text-[2.3rem] leading-[1.05] tracking-tight text-white sm:text-[2.2rem] lg:text-7xl">
               <span className="block font-bold">Healthcare Digital</span>
               <span className="block font-light">Marketing Agency.</span>
             </h1>

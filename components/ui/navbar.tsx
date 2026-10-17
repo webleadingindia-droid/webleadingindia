@@ -185,8 +185,9 @@ const NAV_LINKS = [
   { name: 'About', href: '/about' },
 ];
 
-const PHONE_DISPLAY = '+91 98765 43210';
-const PHONE_HREF = 'tel:+919876543210';
+
+const PHONE_DISPLAY = '+91 83768 17258';
+const PHONE_HREF = 'tel:+918376817258';
 
 /* ───────────────────────── Search index ───────────────────────── */
 
