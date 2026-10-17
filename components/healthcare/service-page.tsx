@@ -173,7 +173,7 @@ export default function ServicePage(props: ServicePageProps) {
       <Navbar />
 
       {/* ============================ HERO ============================ */}
-      <section className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-36 lg:pb-28">
+      <section className="relative isolate overflow-hidden pt-36 pb-14 sm:pt-40 sm:pb-20 lg:pt-44 lg:pb-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-green-100 via-white to-white" />
         <div className="absolute -top-24 -left-24 -z-10 h-72 w-72 rounded-full bg-green-200/40 blur-3xl sm:h-96 sm:w-96" />
         <div className="absolute top-40 -right-24 -z-10 h-72 w-72 rounded-full bg-green-200/50 blur-3xl sm:h-96 sm:w-96" />
@@ -187,14 +187,14 @@ export default function ServicePage(props: ServicePageProps) {
         />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-8 [&>*]:min-w-0">
             <div className="text-center lg:col-span-7 lg:text-left">
-              <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-green-200 bg-white/80 px-4 py-2 text-xs font-semibold text-green-700 shadow-sm backdrop-blur sm:text-sm lg:mx-0">
+              <div className="mx-auto mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-green-200 bg-white/80 px-3 py-1.5 text-xs sm:mb-6 sm:px-4 sm:py-2 font-semibold text-green-700 shadow-sm backdrop-blur sm:text-sm lg:mx-0">
                 <HeroBadgeIcon className="h-4 w-4" />
                 {hero.badge.text}
               </div>
 
-              <h1 className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+              <h1 className="text-balance break-words text-3xl font-extrabold leading-[1.15] tracking-tight min-[400px]:text-4xl sm:text-5xl lg:text-5xl xl:text-6xl">
                 {hero.before}{' '}
                 <span className="bg-gradient-to-r from-green-600 via-green-500 to-green-500 bg-clip-text text-transparent">
                   {hero.accent}
@@ -202,13 +202,13 @@ export default function ServicePage(props: ServicePageProps) {
                 {hero.after ? ` ${hero.after}` : ''}
               </h1>
 
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:mx-0 lg:text-xl">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-600 sm:mt-6 sm:text-lg lg:mx-0">
                 {hero.description}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
                 <Link href={hero.primary.href} className="w-full sm:w-auto">
-                  <Button className="group h-12 w-full rounded-xl bg-gradient-to-r from-green-600 to-green-500 px-7 text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/30 sm:w-auto">
+                  <Button className="group h-auto min-h-12 w-full whitespace-normal rounded-xl bg-gradient-to-r from-green-600 to-green-500 px-5 py-3 text-center text-base font-semibold text-white shadow-lg shadow-green-500/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/30 sm:w-auto">
                     {hero.primary.label}
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -216,7 +216,7 @@ export default function ServicePage(props: ServicePageProps) {
                 <Link href={hero.secondary.href} className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="h-12 w-full rounded-xl border-2 border-green-500/60 bg-white/70 px-7 text-base font-semibold text-green-700 backdrop-blur hover:bg-green-50 sm:w-auto"
+                    className="h-auto min-h-12 w-full whitespace-normal rounded-xl border-2 border-green-500/60 bg-white/70 px-5 py-3 text-base font-semibold text-green-700 backdrop-blur hover:bg-green-50 sm:w-auto"
                   >
                     <SecondaryIcon className="mr-2 h-5 w-5" />
                     {hero.secondary.label}
@@ -224,7 +224,7 @@ export default function ServicePage(props: ServicePageProps) {
                 </Link>
               </div>
 
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-4 sm:justify-center lg:justify-start">
                 <div className="flex -space-x-3">
                   {['A', 'P', 'R', 'S'].map((l) => (
                     <div
@@ -250,7 +250,7 @@ export default function ServicePage(props: ServicePageProps) {
             {/* Dashboard card */}
             <div className="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none">
               <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-green-300/40 via-green-200/30 to-transparent blur-2xl" />
-              <div className="relative rounded-3xl border border-white/60 bg-white/80 p-5 shadow-2xl shadow-green-900/10 backdrop-blur-xl sm:p-7">
+              <div className="relative rounded-3xl border border-white/60 bg-white/80 p-4 shadow-2xl shadow-green-900/10 backdrop-blur-xl sm:p-7">
                 <div className="mb-6 flex items-center justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-500 text-white shadow-md">
@@ -270,11 +270,11 @@ export default function ServicePage(props: ServicePageProps) {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   {dashboard.rows.map((row, i) => (
-                    <div key={row.label} className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+                    <div key={row.label} className="min-w-0 rounded-2xl border border-gray-100 bg-white p-3 shadow-sm sm:p-4">
                       <p className="text-xs text-gray-500">{row.label}</p>
-                      <p className="mt-1 text-2xl font-bold text-gray-900">{row.value}</p>
+                      <p className="mt-1 text-xl font-bold text-gray-900 sm:text-2xl">{row.value}</p>
                       <span
                         className={`mt-2 inline-block rounded-full px-2 py-0.5 text-xs font-semibold ${tones[i % tones.length]}`}
                       >
@@ -284,7 +284,7 @@ export default function ServicePage(props: ServicePageProps) {
                   ))}
                 </div>
 
-                <div className="mt-5 flex items-center justify-between gap-3 rounded-2xl bg-gradient-to-r from-green-600 to-green-500 px-4 py-3 text-white">
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-2xl bg-gradient-to-r from-green-600 to-green-500 px-4 py-3 text-white">
                   <span className="text-sm font-medium">{dashboard.footerLabel}</span>
                   <span className="flex items-center gap-1.5 text-right text-sm font-bold">
                     <DashFooterIcon className="h-4 w-4 shrink-0" />
@@ -619,24 +619,6 @@ export default function ServicePage(props: ServicePageProps) {
       </section>
 
       <Footer />
-
-      {/* Mobile sticky action bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 p-3 backdrop-blur-lg lg:hidden">
-        <div className="mx-auto flex max-w-md gap-2">
-          <Link href={phone.href} className="flex-1">
-            <Button variant="outline" className="h-11 w-full rounded-xl border-green-500 font-semibold text-green-700">
-              <Phone className="mr-2 h-4 w-4" />
-              Call
-            </Button>
-          </Link>
-          <Link href={hero.primary.href} className="flex-[2]">
-            <Button className="h-11 w-full rounded-xl bg-gradient-to-r from-green-600 to-green-500 font-semibold text-white">
-              Get Free Quote
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
-      </div>
     </main>
   );
 }

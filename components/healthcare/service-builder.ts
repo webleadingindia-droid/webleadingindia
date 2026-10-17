@@ -61,7 +61,7 @@ export function buildService(c: ServiceCfg): ServicePageProps {
       description: c.desc,
       primary: { label: c.cta, href: '/quote' },
       secondary: { label: 'Contact Us', href: '/contact', icon: Eye },
-      trust: 'Trusted by 150+ Healthcare Providers',
+      trust: 'Trusted by 200+ Healthcare Providers',
       rating: '4.9/5 Rating',
     },
     dashboard: {

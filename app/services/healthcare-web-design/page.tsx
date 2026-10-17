@@ -34,7 +34,7 @@ const props: ServicePageProps = {
       'Transform your medical digital presence with beautiful, patient-centered designs that build trust, enhance accessibility, and drive meaningful healthcare engagement.',
     primary: { label: 'Start Design Project', href: '/quote' },
     secondary: { label: 'View Portfolio', href: '../portfolio', icon: Eye },
-    trust: 'Trusted by 150+ Healthcare Providers',
+    trust: 'Trusted by 200+ Healthcare Providers',
     rating: '4.9/5 Rating',
   },
   dashboard: {
@@ -221,7 +221,7 @@ const props: ServicePageProps = {
     icon: Palette,
     title: 'Ready to Transform Your Healthcare Digital Presence?',
     description:
-      'Join 150+ healthcare providers who trust us with their design. Get your free, no-obligation healthcare design consultation today.',
+      'Join 200+ healthcare providers who trust us with their design. Get your free, no-obligation healthcare design consultation today.',
     primary: { label: 'Get Free Design Consultation', href: '/quote' },
     badges: [
       { icon: Accessibility, text: 'Accessibility Focused' },

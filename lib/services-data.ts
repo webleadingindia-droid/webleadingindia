@@ -45,7 +45,7 @@ export const SERVICES: ServiceCfg[] = [
     desc: 'When patients search “doctor near me”, your clinic should be the first name they see. We optimise your Google Business Profile, citations and reviews to dominate local maps.',
     cta: 'Get a Free Local SEO Audit',
     dash: ['MapPin', 'Local Visibility Report', 'Google Maps Analytics', [['Map Pack Rankings', '38', '+21'], ['Profile Calls', '640', '+74%'], ['Direction Requests', '1.1K', '+58%'], ['Review Rating', '4.8', '+0.6']], 'Local Reach (6 Months)', '3.4x Increase'],
-    stats: [['Top 3', 'Maps Pack Rankings', 'MapPin'], ['4.8★', 'Average Client Rating', 'Star'], ['70%', 'Growth in Calls', 'Phone'], ['150+', 'Profiles Optimised', 'BadgeCheck']],
+    stats: [['Top 3', 'Maps Pack Rankings', 'MapPin'], ['4.8★', 'Average Client Rating', 'Star'], ['70%', 'Growth in Calls', 'Phone'], ['200+', 'Profiles Optimised', 'BadgeCheck']],
     svc: ['Local SEO Built for Clinics & Hospitals', 'Everything required to appear and convert in your city’s healthcare searches.', [
       ['MapPin', 'Google Business Profile', 'Complete setup and weekly optimisation of your listing.', 'Category & Service Setup|Photos & Posts|Q&A Management|Booking Links'],
       ['Globe', 'Citations & Directories', 'Consistent NAP listings across trusted healthcare directories.', 'Practo & Justdial Style Listings|NAP Cleanup|Duplicate Removal|Local Backlinks'],
@@ -262,7 +262,7 @@ export const SERVICES: ServiceCfg[] = [
     desc: 'Build a reliable pipeline of new-patient enquiries. We combine ads, SEO, landing pages and follow-up systems so you know what each patient costs.',
     cta: 'Get a Free Lead Plan',
     dash: ['Users', 'Lead Pipeline', 'Patient Acquisition', [['Qualified Leads', '318', '+69%'], ['Cost per Patient', '₹1,240', '-33%'], ['Lead-to-Visit', '34%', '+11%'], ['Monthly Revenue', '₹8.4L', '+46%']], 'New Patients (6 Months)', '3.0x Increase'],
-    stats: [['3x', 'More Qualified Leads', 'Users'], ['-33%', 'Lower Cost per Patient', 'Target'], ['34%', 'Lead-to-Visit Rate', 'CheckCircle2'], ['150+', 'Practices Served', 'Building2']],
+    stats: [['3x', 'More Qualified Leads', 'Users'], ['-33%', 'Lower Cost per Patient', 'Target'], ['34%', 'Lead-to-Visit Rate', 'CheckCircle2'], ['200+', 'Practices Served', 'Building2']],
     svc: ['A Complete Patient Acquisition System', 'Every stage from first click to first visit, designed and measured.', [
       ['Target', 'Multi-Channel Campaigns', 'Google, Meta and local channels working together.', 'Search & Maps Ads|Social Ads|Local SEO|Referral Programmes'],
       ['MousePointerClick', 'High-Intent Landing Pages', 'Pages built for specific treatments and cities.', 'Treatment Pages|Fast Mobile Load|Lead Forms|WhatsApp CTA'],

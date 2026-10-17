@@ -36,7 +36,7 @@ const props: ServicePageProps = {
       'Boost your medical website rankings and drive qualified patient traffic with expert healthcare SEO. Show up where patients are searching and turn visits into appointments.',
     primary: { label: 'Get Free SEO Audit', href: '/quote' },
     secondary: { label: 'Contact Us', href: '../contact', icon: Eye },
-    trust: 'Trusted by 150+ Healthcare Providers',
+    trust: 'Trusted by 200+ Healthcare Providers',
     rating: '4.9/5 Rating',
   },
   dashboard: {
@@ -223,7 +223,7 @@ const props: ServicePageProps = {
     icon: TrendingUp,
     title: 'Ready to Dominate Medical Search Results?',
     description:
-      'Join 150+ healthcare providers who trust us with their SEO. Get your free, no-obligation healthcare SEO audit today.',
+      'Join 200+ healthcare providers who trust us with their SEO. Get your free, no-obligation healthcare SEO audit today.',
     primary: { label: 'Get Free SEO Audit', href: '/quote' },
     badges: [
       { icon: ShieldCheck, text: 'Healthcare Specialized' },

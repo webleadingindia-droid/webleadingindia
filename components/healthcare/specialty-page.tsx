@@ -53,7 +53,7 @@ export default function SpecialtyPage({ s }: { s: Specialty }) {
                   ))}
                 </div>
                 <div className="mt-6 grid grid-cols-3 gap-3 border-t border-gray-100 pt-5 text-center">
-                  {[['150+', 'Providers'], ['3x', 'Lead Growth'], ['4.9★', 'Rating']].map(([v, l]) => (
+                  {[['200+', 'Providers'], ['3x', 'Lead Growth'], ['4.9★', 'Rating']].map(([v, l]) => (
                     <div key={l}><div className="text-2xl font-extrabold text-gray-900">{v}</div><div className="text-xs text-gray-500">{l}</div></div>
                   ))}
                 </div>
