@@ -173,15 +173,15 @@ const MENUS: Record<
     eyebrow: 'Who we serve',
     title: 'Built for every kind of practice',
     text: 'Specialty-specific playbooks for clinics, hospitals, allied health, aesthetics and healthcare retail.',
-    ctaLabel: 'Talk to our team',
-    ctaHref: '/contact',
+    ctaLabel: 'Explore all specialties',
+    ctaHref: '/specialties',
     footNote: 'Don’t see your specialty? We work with every kind of practice.',
   },
 };
 
 const NAV_LINKS = [
   { name: 'Case Studies', href: '/portfolio' },
-  { name: 'Research & Insights', href: '/blogs/' },
+  { name: 'Research & Insights', href: '/blogs' },
   { name: 'About', href: '/about' },
 ];
 
@@ -205,7 +205,7 @@ const PAGE_ENTRIES: { name: string; href: string; desc: string; icon: LucideIcon
   { name: 'Home', href: '/', desc: 'Back to the homepage', icon: Home },
   { name: 'About', href: '/about', desc: 'Who we are & how we work', icon: Info },
   { name: 'Case Studies', href: '/portfolio', desc: 'Portfolio & client results', icon: Briefcase },
-  { name: 'Research & Insights', href: '/blogs/', desc: 'Blogs, guides & resources', icon: BookOpen },
+  { name: 'Research & Insights', href: '/blogs', desc: 'Blogs, guides & resources', icon: BookOpen },
   { name: 'Contact', href: '/contact', desc: 'Talk to our team', icon: Mail },
   { name: 'Free Marketing Audit', href: '/quote', desc: 'Get a free audit & quote', icon: ClipboardCheck },
 ];

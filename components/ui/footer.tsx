@@ -21,7 +21,7 @@ export default function Footer() {
     { name: 'About Us', href: '/about' },
     { name: 'Our Services', href: '/services' },
     { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Blog', href: '/blogs/' },
+    { name: 'Blog', href: '/blogs' },
     { name: 'Contact', href: '/contact' },
     { name: 'Get Quote', href: '/quote' },
     { name: 'Privacy Policy', href: '/privacy-policy' }
