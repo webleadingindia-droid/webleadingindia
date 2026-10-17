@@ -4,15 +4,13 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import FooterContactBar from './FooterContactBar';
 import {
   Menu, X, ChevronDown, Mail, Search, ArrowRight, ArrowUpRight, Sparkles, ClipboardCheck,
   Monitor, MousePointerClick, MapPin, PenLine, Share2, Target, Megaphone, PlayCircle,
   TrendingUp, Video, MessageCircle, Users, Star, UserRound, Palette, Code2, CalendarCheck,
-  Smartphone, ShoppingBag, BarChart3, Bot, Wrench, Stethoscope, Home, Info, Briefcase,
-  BookOpen, CornerDownLeft,
-  Phone, Facebook, Instagram, Linkedin, Youtube,   // ← add these
+  ShoppingBag, BarChart3, Wrench, Stethoscope, Home, Info, Briefcase,
+  BookOpen, CornerDownLeft, Phone,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -187,7 +185,8 @@ const NAV_LINKS = [
   { name: 'About', href: '/about' },
 ];
 
-const EMAIL = 'info@webleadingindia.com';
+const PHONE_DISPLAY = '+91 98765 43210';
+const PHONE_HREF = 'tel:+919876543210';
 
 /* ───────────────────────── Search index ───────────────────────── */
 
@@ -196,8 +195,8 @@ type SearchEntry = {
   name: string;
   href: string;
   type: SearchType;
-  group?: string; // column title
-  parent?: string; // parent item (for nested specialties)
+  group?: string;
+  parent?: string;
   desc?: string;
   icon: LucideIcon;
   haystack: string;
@@ -294,6 +293,11 @@ export default function Navbar() {
   const q = query.trim().toLowerCase();
   const tokens = useMemo(() => (q ? q.split(/\s+/) : []), [q]);
 
+  /* Home page par navbar hero ke upar transparent + blur rehta hai.
+     Scroll karne par (ya baaki pages par) light glass bar ban jaata hai. */
+  // Hover par bhi hero-mode same rehta hai (layout jump nahi hota) — mega panel apna white card leke aata hai.
+  const overHero = pathname === '/' && !isScrolled;
+
   const groups = useMemo(() => {
     if (!tokens.length) return [] as { type: SearchType; items: SearchEntry[] }[];
     const scored = SEARCH_INDEX.map((e) => {
@@ -334,7 +338,7 @@ export default function Navbar() {
 
   /* Effects */
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -406,10 +410,20 @@ export default function Navbar() {
 
   const pill = (activeState: boolean) =>
     `relative flex items-center gap-1 rounded-full px-4 py-2 text-[14.5px] font-medium transition-all duration-300 ${
-      activeState
-        ? 'bg-green-50 text-green-700 ring-1 ring-green-100'
-        : 'text-gray-700 hover:bg-gray-100/80 hover:text-green-700'
+      overHero
+        ? activeState
+          ? 'bg-white/20 text-white'
+          : 'text-white/90 hover:bg-white/15 hover:text-white'
+        : activeState
+          ? 'bg-green-50 text-green-700 ring-1 ring-green-100'
+          : 'text-gray-700 hover:bg-gray-100/80 hover:text-green-700'
     }`;
+
+  const iconBtn = `flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 ${
+    overHero
+      ? 'border-white/25 bg-white/10 text-white backdrop-blur-md hover:bg-white/20'
+      : 'border-gray-200 bg-white text-gray-800 shadow-sm hover:border-green-300 hover:text-green-700'
+  }`;
 
   /* ───────── Mega panel ───────── */
   const renderMega = (key: MenuKey) => {
@@ -566,102 +580,37 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ───────── Top bar ───────── */}
-<div className="relative h-10 overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-green-700 text-white">
-  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_-20%,rgba(255,255,255,0.18),transparent_50%)]" />
-  <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between px-4 text-xs sm:px-6 sm:text-[13px] lg:px-8">
-
-    {/* Left: Phone + Email */}
-    <div className="flex items-center gap-3 sm:gap-5">
-      <a
-        href="tel:+919876543210"
-        className="flex items-center gap-1.5 transition-colors hover:text-green-100"
-      >
-        <Phone className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">+91 98765 43210</span>
-        <span className="sm:hidden">Call</span>
-      </a>
-      <span className="hidden h-3 w-px bg-white/30 sm:block" />
-      <a
-        href={`mailto:${EMAIL}`}
-        className="hidden items-center gap-1.5 transition-colors hover:text-green-100 sm:flex"
-      >
-        <Mail className="h-3.5 w-3.5" />
-        {EMAIL}
-      </a>
-    </div>
-
-    {/* Right: Social icons */}
-    <div className="flex items-center gap-1.5 sm:gap-2">
-      <a
-        href="https://facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
-      >
-        <Facebook className="h-3.5 w-3.5" />
-      </a>
-      <a
-        href="https://instagram.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
-      >
-        <Instagram className="h-3.5 w-3.5" />
-      </a>
-      <a
-        href="https://linkedin.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
-      >
-        <Linkedin className="h-3.5 w-3.5" />
-      </a>
-      <a
-        href="https://youtube.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
-      >
-        <Youtube className="h-3.5 w-3.5" />
-      </a>
-      <a
-        href="https://wa.me/919876543210"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="WhatsApp"
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
-      >
-        <MessageCircle className="h-3.5 w-3.5" />
-      </a>
-    </div>
-  </div>
-</div>
-
-      {/* ───────── Main nav ───────── */}
-      <header
-        onMouseLeave={() => setOpenMenu(null)}
-        className={`fixed inset-x-0 z-40 transition-all duration-300 ${isScrolled ? 'top-0' : 'top-10'}`}
-      >
+      {/* ───────── Main nav (fixed, sits on top of the hero banner) ───────── */}
+      <header onMouseLeave={() => setOpenMenu(null)} className="fixed inset-x-0 top-0 z-40">
         <div
           className={`border-b transition-all duration-300 ${
-            isScrolled
-              ? 'border-gray-200/70 bg-white/85 py-2 shadow-[0_10px_30px_-15px_rgba(16,185,129,0.25)] backdrop-blur-xl'
-              : 'border-transparent bg-white/70 py-3.5 backdrop-blur-md'
+            overHero
+              ? 'border-transparent py-5 lg:pt-8'
+              : 'border-gray-200/70 bg-white/90 py-2.5 shadow-[0_10px_30px_-15px_rgba(16,185,129,0.25)] backdrop-blur-xl'
           }`}
         >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-10">
             <div className="flex items-center justify-between gap-4">
               <Link href="/" className="flex flex-shrink-0 items-center" aria-label="Web Leading India – Home">
-                <Image src="/Logo.png" alt="Web Leading India" width={180} height={60} priority className="h-10 w-auto sm:h-11" />
+                <Image
+                  src="/Logo.png"
+                  alt="Web Leading India"
+                  width={180}
+                  height={60}
+                  priority
+                  className={`h-10 w-auto transition-all duration-300 sm:h-11 ${overHero ? 'brightness-0 invert' : ''}`}
+                />
               </Link>
 
               {/* Desktop menu */}
-              <nav className="hidden items-center gap-0.5 rounded-full border border-gray-200/70 bg-white/60 p-1 shadow-sm backdrop-blur lg:flex" aria-label="Main">
+              <nav
+                className={`hidden items-center gap-0.5 rounded-full border p-1 transition-all duration-300 lg:flex ${
+                  overHero
+                    ? 'border-white/20 bg-white/10 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.4)] backdrop-blur-md'
+                    : 'border-gray-200/70 bg-white/60 shadow-sm backdrop-blur'
+                }`}
+                aria-label="Main"
+              >
                 {(Object.keys(MENUS) as MenuKey[]).map((key) => {
                   const open = openMenu === key;
                   return (
@@ -690,42 +639,49 @@ export default function Navbar() {
 
               {/* Right actions */}
               <div className="flex items-center gap-2 sm:gap-3">
-                {/* Desktop search pill */}
+                {/* Desktop search */}
                 <button
                   type="button"
                   onClick={openSearch}
                   onMouseEnter={() => setOpenMenu(null)}
-                  aria-label="Search"
-                  className="hidden h-11 items-center gap-2.5 rounded-full border border-gray-200 bg-white/80 pl-4 pr-2.5 text-sm text-gray-500 shadow-sm transition-all hover:border-green-300 hover:text-green-700 hover:shadow-md lg:flex"
+                  aria-label="Search (Ctrl K)"
+                  className={`hidden lg:flex ${iconBtn}`}
                 >
-                  <Search className="h-4 w-4" />
-                  <span className="hidden xl:inline">Search</span>
-                  <kbd className="hidden rounded-md border border-gray-200 bg-gray-50 px-1.5 py-0.5 text-[11px] font-medium text-gray-400 xl:inline">
-                    Ctrl K
-                  </kbd>
+                  <Search className="h-[18px] w-[18px]" />
                 </button>
 
-                <Link href="/quote" className="hidden sm:block" onMouseEnter={() => setOpenMenu(null)}>
-                  <Button className="group h-11 rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 text-sm font-semibold text-white shadow-lg shadow-green-600/30 transition-all hover:from-green-700 hover:to-green-800 hover:shadow-green-600/40">
-                    <ClipboardCheck className="mr-2 h-4 w-4" />
-                    Free Marketing Audit
-                    <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </Button>
+                {/* Phone */}
+                <a
+                  href={PHONE_HREF}
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className={`hidden items-center gap-2 px-2 text-sm font-medium transition-colors 2xl:flex ${
+                    overHero ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-green-700'
+                  }`}
+                >
+                  <Phone className="h-4 w-4" />
+                  {PHONE_DISPLAY}
+                </a>
+
+                {/* CTA */}
+                <Link
+                  href="/quote"
+                  onMouseEnter={() => setOpenMenu(null)}
+                  className={`group hidden h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold transition-all sm:inline-flex ${
+                    overHero
+                      ? 'bg-white text-green-800 shadow-lg shadow-black/10 hover:bg-green-50'
+                      : 'bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg shadow-green-600/30 hover:from-green-700 hover:to-green-800'
+                  }`}
+                >
+                  <ClipboardCheck className="h-4 w-4" />
+                  Free Marketing Audit
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
 
-                {/* Mobile search */}
-                <button
-                  onClick={openSearch}
-                  aria-label="Search"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-colors hover:border-green-300 hover:text-green-700 lg:hidden"
-                >
+                {/* Mobile search + menu */}
+                <button onClick={openSearch} aria-label="Search" className={`lg:hidden ${iconBtn}`}>
                   <Search className="h-5 w-5" />
                 </button>
-                <button
-                  onClick={() => setIsOpen(true)}
-                  aria-label="Open menu"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm transition-colors hover:border-green-300 hover:text-green-700 lg:hidden"
-                >
+                <button onClick={() => setIsOpen(true)} aria-label="Open menu" className={`lg:hidden ${iconBtn}`}>
                   <Menu className="h-5 w-5" />
                 </button>
               </div>
@@ -961,12 +917,19 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="border-t border-gray-100 p-4">
+        <div className="space-y-2 border-t border-gray-100 p-4">
+          <a
+            href={PHONE_HREF}
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-gray-200 text-sm font-semibold text-gray-800"
+          >
+            <Phone className="h-4 w-4" />
+            {PHONE_DISPLAY}
+          </a>
           <Link href="/quote" onClick={() => setIsOpen(false)} className="block">
-            <Button className="h-12 w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 text-sm font-semibold text-white shadow-lg shadow-green-600/25 hover:from-green-700 hover:to-green-800">
+            <span className="flex h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-green-600 to-green-700 text-sm font-semibold text-white shadow-lg shadow-green-600/25">
               <ClipboardCheck className="mr-2 h-4 w-4" />
               Get Free Marketing Audit
-            </Button>
+            </span>
           </Link>
         </div>
       </aside>

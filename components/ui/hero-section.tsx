@@ -1,26 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Sparkles, Heart, Stethoscope, TrendingUp, Building2 } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { ArrowRight, Building2 } from 'lucide-react';
 
-const texts = [
-  'Healthcare Digital Marketing',
-  'Medical SEO Solutions',
-  'Patient Acquisition Strategies',
-  'Healthcare Brand Growth',
+const stats = [
+  { value: '200+', label: 'Healthcare Clients' },
+  { value: '95%', label: 'Patient Satisfaction' },
+  { value: '5+', label: 'Years Experience' },
 ];
 
-const metrics = [
-  { label: 'New Patient Inquiries', value: '+185%', bar: 'w-[85%]' },
-  { label: 'Appointment Bookings', value: '+220%', bar: 'w-[95%]' },
-  { label: 'Medical SEO Rankings', value: 'Top 5', bar: 'w-[70%]' },
-  { label: 'Patient Reviews', value: '+150%', bar: 'w-[78%]' },
-];
-
-// `alt` sirf accessibility/SEO ke liye hai, screen par naam nahi dikhta.
-// logo load na ho to ek neutral placeholder tile dikhega.
+// `alt` sirf accessibility/SEO ke liye hai. Logo load na ho to placeholder tile dikhega.
 const clients: { alt: string; logo?: string }[] = [
   { alt: 'Bansal Eye Hospital', logo: '/client-logo/bansal-eye-hospital.png' },
   { alt: 'Asha Centre', logo: '/client-logo/asha-centre.png' },
@@ -94,141 +85,78 @@ function MarqueeRow({ reverse = false, speed = 40 }: { reverse?: boolean; speed?
 }
 
 export default function HeroSection() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setCurrent((p) => (p + 1) % texts.length), 3200);
-    return () => clearInterval(id);
-  }, []);
-
   return (
-    <section className="relative isolate overflow-hidden bg-white">
-      {/* Backdrop */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-50 via-white to-white" />
-        <div className="absolute -top-32 left-1/2 h-[480px] w-[800px] -translate-x-1/2 rounded-full bg-green-200/50 blur-[120px]" />
-        <div className="absolute right-0 top-1/2 h-72 w-72 rounded-full bg-green-200/40 blur-[100px]" />
-        <div
-          className="absolute inset-0 opacity-[0.5]"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, rgba(16,185,129,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(16,185,129,0.08) 1px, transparent 1px)',
-            backgroundSize: '56px 56px',
-            maskImage: 'radial-gradient(ellipse at top, black 20%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at top, black 20%, transparent 70%)',
-          }}
-        />
-      </div>
+    <>
+      {/* ───────── Hero banner (navbar is fixed on top of this) ───────── */}
+      <section className="p-2 sm:p-3 lg:p-4">
+        <div className="relative isolate flex min-h-[640px] flex-col overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-green-900/70 via-green-800 to-gray-950 sm:rounded-[2.25rem] lg:min-h-[calc(100svh-2rem)]">
+          {/* Background image — apni image /public/hero-banner.jpg me rakho */}
+          <Image
+            src="https://plain-apac-prod-public.komododecks.com/202610/17/txsYfdLlZVbeJcsvuMfj/image.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="-z-20 object-cover object-center"
+          />
+          {/* Overlays for readability */}
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/30 to-black/80" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.25),transparent_70%)]" />
 
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-16 pt-28 sm:px-6 sm:pt-36 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8 lg:pb-20 lg:pt-44">
-        {/* Left */}
-        <div className="text-center lg:text-left">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-green-200 bg-white px-4 py-1.5 text-xs font-medium text-green-700 shadow-sm sm:text-sm">
-            <Sparkles className="h-4 w-4" />
-            #1 Healthcare Digital Marketing Agency
-          </div>
+          {/* Centered content */}
+          <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-10 pt-32 text-center sm:px-6 sm:pt-36">
+            <p className="text-[13px] font-medium tracking-wide text-white/90 sm:text-sm">
+              Trusted by 200+ healthcare clients
+            </p>
 
-          <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-gray-950 sm:text-5xl md:text-6xl lg:text-6xl">
-            Grow Your
-            <span className="mt-1 block min-h-[2.3em] overflow-hidden sm:min-h-[1.2em]">
-              <span
-                key={current}
-                className="block animate-[heroIn_0.7s_ease-out] bg-gradient-to-r from-green-600 via-green-500 to-green-500 bg-clip-text text-transparent"
+            <h1 className="mt-5 text-[2.2rem] leading-[1.05] tracking-tight text-white sm:text-[2.2rem] lg:text-7xl">
+              <span className="block font-bold">Healthcare Digital</span>
+              <span className="block font-light">Marketing Agency.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-xl text-[14px] leading-relaxed text-white/85 sm:text-lg text-white lg:text-[19px]">
+              India&apos;s specialist healthcare marketing agency, working exclusively with clinics,
+              hospitals and medical practices to bring in more patients.
+            </p>
+
+            <div className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
+              <Link
+                href="/quote"
+                className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-green-800 shadow-xl shadow-black/20 transition-all hover:bg-green-50 sm:w-auto"
               >
-                {texts[current]}
-              </span>
-            </span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg lg:mx-0">
-            We help healthcare providers, clinics, and medical practices attract more patients with
-            proven digital marketing strategies built for the healthcare industry.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 lg:justify-start">
-            {['200+ Healthcare Clients', '95% Patient Satisfaction', '5+ Years Experience'].map((s) => (
-              <div key={s} className="flex items-center text-sm font-medium text-gray-700">
-                <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
-                {s}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
-            <Link href="/quote">
-              <Button className="group h-14 w-full rounded-full bg-green-600 px-8 text-base font-semibold text-white shadow-lg shadow-green-600/30 transition-all hover:bg-green-700 sm:w-auto">
                 Get Free Consultation
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                className="h-14 w-full rounded-full border-gray-200 bg-white px-8 text-base font-semibold text-gray-900 shadow-sm transition-all hover:border-green-300 hover:bg-green-50 hover:text-green-700 sm:w-auto"
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20 sm:w-auto"
               >
                 Contact us
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Right: dashboard */}
-        <div className="relative mx-auto w-full max-w-lg px-3 sm:px-0">
-          <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-green-300/40 to-green-200/0 blur-2xl" />
-          <div className="relative rounded-3xl border border-gray-200/80 bg-white p-5 shadow-[0_40px_80px_-30px_rgba(16,185,129,0.35)] sm:p-6">
-            <div className="mb-5 flex items-center justify-between gap-3">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-green-600">Live Overview</p>
-                <h3 className="mt-1 text-base font-semibold text-gray-950 sm:text-lg">Healthcare Results Dashboard</h3>
-              </div>
-              <div className="flex flex-shrink-0 items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
-                <TrendingUp className="h-3.5 w-3.5" /> Growing
-              </div>
+              </Link>
             </div>
+          </div>
 
-            <svg viewBox="0 0 300 80" className="mb-5 h-20 w-full">
-              <defs>
-                <linearGradient id="sparkLight" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d="M0 65 C40 60 60 50 90 52 S140 30 170 32 S230 12 300 6 V80 H0Z" fill="url(#sparkLight)" />
-              <path
-                d="M0 65 C40 60 60 50 90 52 S140 30 170 32 S230 12 300 6"
-                fill="none"
-                stroke="#059669"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            <div className="space-y-3">
-              {metrics.map((m) => (
-                <div key={m.label} className="rounded-xl bg-gray-50 p-3.5">
-                  <div className="mb-2 flex items-center justify-between gap-2 text-sm">
-                    <span className="text-gray-600">{m.label}</span>
-                    <span className="font-semibold text-green-600">{m.value}</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-gray-200">
-                    <div className={`h-full rounded-full bg-gradient-to-r from-green-500 to-green-400 ${m.bar}`} />
-                  </div>
+          {/* Stats strip */}
+          <div className="relative mx-auto w-full max-w-6xl px-5 pb-6 sm:px-8 sm:pb-8">
+            <div className="grid grid-cols-3 border-t border-white/20 pt-5 sm:pt-6">
+              {stats.map((s, i) => (
+                <div
+                  key={s.label}
+                  className={`px-2 text-center sm:px-4 ${i > 0 ? 'border-l border-white/20' : ''}`}
+                >
+                  <p className="text-2xl font-bold tracking-tight text-white sm:text-4xl">{s.value}</p>
+                  <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75 sm:text-xs">
+                    {s.label}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="absolute -right-1 -top-5 animate-bounce rounded-2xl bg-green-500 p-3 text-white shadow-xl shadow-green-500/30 [animation-duration:3s] sm:-right-4">
-            <Heart className="h-6 w-6" />
-          </div>
-          <div className="absolute -bottom-5 -left-1 animate-pulse rounded-2xl border border-gray-100 bg-white p-3 text-green-600 shadow-xl sm:-left-4">
-            <Stethoscope className="h-6 w-6" />
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Client logos */}
-      <div className="relative pb-16 pt-6 sm:pb-20">
+      {/* ───────── Client logos ───────── */}
+      <section className="relative bg-white pb-16 pt-12 sm:pb-20">
         <div className="mx-auto mb-10 flex max-w-3xl items-center gap-5 px-4 sm:px-6">
           <span className="h-px flex-1 bg-gradient-to-r from-transparent to-green-200" />
           <p className="text-center text-[11px] font-semibold uppercase tracking-[0.25em] text-gray-500 sm:text-xs">
@@ -241,22 +169,18 @@ export default function HeroSection() {
           <MarqueeRow speed={90} />
           <MarqueeRow reverse speed={110} />
         </div>
-      </div>
 
-      <style>{`
-        @keyframes heroIn {
-          from { transform: translateY(100%); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes clientsMarquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(calc(-50% - 0.5rem)); }
-        }
-        @keyframes clientsMarqueeReverse {
-          from { transform: translateX(calc(-50% - 0.5rem)); }
-          to { transform: translateX(0); }
-        }
-      `}</style>
-    </section>
+        <style>{`
+          @keyframes clientsMarquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-50% - 0.5rem)); }
+          }
+          @keyframes clientsMarqueeReverse {
+            from { transform: translateX(calc(-50% - 0.5rem)); }
+            to { transform: translateX(0); }
+          }
+        `}</style>
+      </section>
+    </>
   );
 }
