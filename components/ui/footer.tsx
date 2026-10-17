@@ -100,7 +100,7 @@ export default function Footer() {
                 <div className="flex items-start">
                   <MapPin className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300">C - 1, 135, Gali No. 11, Ramesh Enclave, Phase 3,</p>
+                    <p className="text-gray-300">B-212, near sheesh mahal vatika main sukhi nehar,</p>
                     <p className="text-gray-300">Kirari Suleman Nagar, Delhi - 110086</p>
                   </div>
                 </div>
