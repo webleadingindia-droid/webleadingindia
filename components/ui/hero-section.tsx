@@ -2,14 +2,43 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Building2 } from 'lucide-react';
+
+/* ───────────────────────── Slides ───────────────────────── */
+
+// Har slide: background image + heading (2 lines) + description.
+// Images /public me rakho (ya remote URL do — next.config me domain allow karna).
+const SLIDE_INTERVAL = 6000; // ms
+
+const slides: { image: string; line1: string; line2: string; text: string }[] = [
+  {
+    image: 'https://plain-apac-prod-public.komododecks.com/202610/17/txsYfdLlZVbeJcsvuMfj/image.png',
+    line1: 'Healthcare Digital',
+    line2: 'Marketing Agency.',
+    text: "India's specialist healthcare marketing agency, working exclusively with clinics, hospitals and medical practices to bring in more patients.",
+  },
+  {
+    image: 'https://www.medkeon.com/wp-content/uploads/2026/01/healthcare-marketing-agency-for-doctors.jpg',
+    line1: 'More Patients,',
+    line2: 'Every Single Month.',
+    text: 'SEO, Google Ads and social media that put your clinic in front of patients who are actively searching for care.',
+  },
+  {
+    image: 'https://eremedium.in/wp-content/uploads/2020/11/Healthcare-Marketing-Agency-in-India.jpg',
+    line1: 'Websites That Turn Visitors',
+    line2: 'Into Appointments.',
+    text: 'Conversion-built clinic websites, landing pages and booking systems designed to make booking effortless.',
+  },
+];
 
 const stats = [
   { value: '200+', label: 'Healthcare Clients' },
   { value: '95%', label: 'Patient Satisfaction' },
   { value: '5+', label: 'Years Experience' },
 ];
+
+/* ───────────────────────── Client logos ───────────────────────── */
 
 // `alt` sirf accessibility/SEO ke liye hai. Logo load na ho to placeholder tile dikhega.
 const clients: { alt: string; logo?: string }[] = [
@@ -84,40 +113,89 @@ function MarqueeRow({ reverse = false, speed = 40 }: { reverse?: boolean; speed?
   );
 }
 
+/* ───────────────────────── Hero ───────────────────────── */
+
 export default function HeroSection() {
+  const [current, setCurrent] = useState(0);
+
+  // Auto-slide — koi click/arrow control nahi, banner khud badalta rehta hai.
+  useEffect(() => {
+    const id = setInterval(() => setCurrent((p) => (p + 1) % slides.length), SLIDE_INTERVAL);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <>
-      {/* ───────── Hero banner (navbar is fixed on top of this) ───────── */}
+      {/* ───────── Hero carousel (navbar is fixed on top of this) ───────── */}
       <section className="p-2 sm:p-3 lg:p-4">
         <div className="relative isolate flex min-h-[640px] flex-col overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-green-900/70 via-green-800 to-gray-950 sm:rounded-[2.25rem] lg:min-h-[calc(100svh-2rem)]">
-          {/* Background image — apni image /public/hero-banner.jpg me rakho */}
-          <Image
-            src="https://plain-apac-prod-public.komododecks.com/202610/17/txsYfdLlZVbeJcsvuMfj/image.png"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="-z-20 object-cover object-center"
-          />
+          {/* Background slides: crossfade + slow Ken Burns zoom */}
+          {slides.map((s, i) => {
+            const on = i === current;
+            return (
+              <div
+                key={s.image}
+                aria-hidden="true"
+                className="absolute inset-0 -z-20"
+                style={{
+                  opacity: on ? 1 : 0,
+                  transition: 'opacity 1400ms ease-in-out',
+                }}
+              >
+                <Image
+                  src={s.image}
+                  alt=""
+                  fill
+                  priority={i === 0}
+                  sizes="100vw"
+                  className="object-cover object-center motion-reduce:!transform-none"
+                  style={{
+                    transform: on ? 'scale(1)' : 'scale(1.12)',
+                    transition: on
+                      ? `transform ${SLIDE_INTERVAL + 2500}ms ease-out`
+                      : 'transform 0ms linear 1400ms',
+                  }}
+                />
+              </div>
+            );
+          })}
+
           {/* Overlays for readability */}
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 via-black/30 to-black/80" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.25),transparent_70%)]" />
 
           {/* Centered content */}
-          <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-10 pt-32 text-center sm:px-6 sm:pt-36">
+          <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-5 pb-8 pt-32 text-center sm:px-6 sm:pt-36">
             <p className="text-[13px] font-medium tracking-wide text-white/90 sm:text-sm">
               Trusted by 200+ healthcare clients
             </p>
 
-            <h1 className="mt-5 text-[2.3rem] leading-[1.05] tracking-tight text-white sm:text-[2.2rem] lg:text-7xl">
-              <span className="block font-bold">Healthcare Digital</span>
-              <span className="block font-light">Marketing Agency.</span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-xl text-[14px] leading-relaxed text-white/85 sm:text-lg text-white lg:text-[19px]">
-              India&apos;s specialist healthcare marketing agency, working exclusively with clinics,
-              hospitals and medical practices to bring in more patients.
-            </p>
+            {/* Stacked slide copy — sab ek hi cell me, isliye height stable rehti hai */}
+            <div className="mt-5 grid w-full">
+              {slides.map((s, i) => {
+                const on = i === current;
+                const Heading = i === 0 ? 'h1' : 'h2';
+                return (
+                  <div
+                    key={s.line1}
+                    aria-hidden={!on}
+                    className={`col-start-1 row-start-1 flex flex-col items-center transition-all ease-out motion-reduce:transition-none ${
+                      on
+                        ? 'translate-y-0 opacity-100 blur-0 duration-[900ms] delay-500'
+                        : 'pointer-events-none translate-y-6 opacity-0 blur-sm duration-500'
+                    }`}
+                  >
+                    <Heading className="text-[2.3rem] leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-7xl">
+                      <span className="block font-bold">{s.line1}</span>
+                      <span className="block font-light">{s.line2}</span>
+                    </Heading>
+                    <p className="mx-auto mt-6 max-w-xl text-[14px] leading-relaxed text-white/90 sm:text-lg lg:text-[19px]">
+                      {s.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
 
             <div className="mt-9 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
               <Link
@@ -133,6 +211,21 @@ export default function HeroSection() {
               >
                 Contact us
               </Link>
+            </div>
+
+            {/* Progress indicator — sirf dikhane ke liye, click nahi hota */}
+            <div aria-hidden="true" className="pointer-events-none mt-8 flex items-center gap-2">
+              {slides.map((_, i) => (
+                <span key={i} className="relative h-[3px] w-10 overflow-hidden rounded-full bg-white/25 sm:w-14">
+                  {i === current && (
+                    <span
+                      key={`bar-${current}`}
+                      className="absolute inset-y-0 left-0 rounded-full bg-white motion-reduce:w-full"
+                      style={{ animation: `heroProgress ${SLIDE_INTERVAL}ms linear forwards` }}
+                    />
+                  )}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -178,6 +271,10 @@ export default function HeroSection() {
           @keyframes clientsMarqueeReverse {
             from { transform: translateX(calc(-50% - 0.5rem)); }
             to { transform: translateX(0); }
+          }
+          @keyframes heroProgress {
+            from { width: 0%; }
+            to { width: 100%; }
           }
         `}</style>
       </section>
