@@ -11,7 +11,9 @@ import {
   Monitor, MousePointerClick, MapPin, PenLine, Share2, Target, Megaphone, PlayCircle,
   TrendingUp, Video, MessageCircle, Users, Star, UserRound, Palette, Code2, CalendarCheck,
   Smartphone, ShoppingBag, BarChart3, Bot, Wrench, Stethoscope, Home, Info, Briefcase,
-  BookOpen, CornerDownLeft, type LucideIcon,
+  BookOpen, CornerDownLeft,
+  Phone, Facebook, Instagram, Linkedin, Youtube,   // ← add these
+  type LucideIcon,
 } from 'lucide-react';
 
 /* ───────────────────────── Menu data ───────────────────────── */
@@ -565,21 +567,80 @@ export default function Navbar() {
   return (
     <>
       {/* ───────── Top bar ───────── */}
-      <div className="relative h-10 overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-green-700 text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_-20%,rgba(255,255,255,0.18),transparent_50%)]" />
-        <div className="relative mx-auto flex h-full max-w-7xl items-center justify-center gap-4 px-4 text-xs sm:justify-between sm:px-6 sm:text-[13px] lg:px-8">
-          <a href={`mailto:${EMAIL}`} className="hidden items-center gap-1.5 transition-colors hover:text-green-100 sm:flex">
-            <Mail className="h-3.5 w-3.5" />
-            {EMAIL}
-          </a>
-          <Link href="/quote" className="group flex items-center gap-1.5 font-medium">
-            <Sparkles className="h-3.5 w-3.5 text-yellow-300" />
-            <span className="hidden md:inline">Get 20% OFF on your first project!</span>
-            <span className="md:hidden">20% OFF first project</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </div>
+<div className="relative h-10 overflow-hidden bg-gradient-to-r from-green-700 via-green-600 to-green-700 text-white">
+  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_-20%,rgba(255,255,255,0.18),transparent_50%)]" />
+  <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between px-4 text-xs sm:px-6 sm:text-[13px] lg:px-8">
+
+    {/* Left: Phone + Email */}
+    <div className="flex items-center gap-3 sm:gap-5">
+      <a
+        href="tel:+919876543210"
+        className="flex items-center gap-1.5 transition-colors hover:text-green-100"
+      >
+        <Phone className="h-3.5 w-3.5" />
+        <span className="hidden sm:inline">+91 98765 43210</span>
+        <span className="sm:hidden">Call</span>
+      </a>
+      <span className="hidden h-3 w-px bg-white/30 sm:block" />
+      <a
+        href={`mailto:${EMAIL}`}
+        className="hidden items-center gap-1.5 transition-colors hover:text-green-100 sm:flex"
+      >
+        <Mail className="h-3.5 w-3.5" />
+        {EMAIL}
+      </a>
+    </div>
+
+    {/* Right: Social icons */}
+    <div className="flex items-center gap-1.5 sm:gap-2">
+      <a
+        href="https://facebook.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
+      >
+        <Facebook className="h-3.5 w-3.5" />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
+      >
+        <Instagram className="h-3.5 w-3.5" />
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
+      >
+        <Linkedin className="h-3.5 w-3.5" />
+      </a>
+      <a
+        href="https://youtube.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
+      >
+        <Youtube className="h-3.5 w-3.5" />
+      </a>
+      <a
+        href="https://wa.me/919876543210"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-green-700"
+      >
+        <MessageCircle className="h-3.5 w-3.5" />
+      </a>
+    </div>
+  </div>
+</div>
 
       {/* ───────── Main nav ───────── */}
       <header
