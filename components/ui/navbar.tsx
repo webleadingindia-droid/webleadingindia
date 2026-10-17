@@ -817,7 +817,7 @@ export default function Navbar() {
             Search services, specialties…
           </button>
 
-          {[{ name: 'Home', href: '/' }, { name: 'About', href: '/about' }].map((l) => (
+          {[{ name: 'Home', href: '/' }].map((l) => (
             <Link
               key={l.href}
               href={l.href}
