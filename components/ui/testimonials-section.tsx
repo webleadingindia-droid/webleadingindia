@@ -11,7 +11,7 @@ const testimonials = [
     company: 'Multi-Specialty Hospital',
     rating: 5,
     text: 'Web Leading India transformed our online presence completely. Our patient inquiries increased by 185% and appointment bookings doubled within 6 months. Their medical SEO expertise is exceptional!',
-    image: 'https://cdn.leonardo.ai/users/977b066b-49c5-48a9-ab26-d504bdd6846f/generations/caeb148d-2f7e-47df-bd47-d1062ee60f3e/segments/4:4:1/Lucid_Origin_A_natural_ultrarealistic_photo_of_an_Indian_male__3.jpg',
+    image: 'https://plain-apac-prod-public.komododecks.com/202610/18/ujn502gWaj9GihQkumLT/image.png',
     results: ['185% Increase', 'Double Bookings', '6 Months'],
   },
   {
@@ -20,7 +20,7 @@ const testimonials = [
     company: 'Dental Clinic Chain',
     rating: 5,
     text: 'The team delivered outstanding social media marketing that perfectly captured our brand essence. Our patient reviews increased by 200% and we gained thousands of new followers.',
-    image: 'https://cdn.leonardo.ai/users/977b066b-49c5-48a9-ab26-d504bdd6846f/generations/eb5974d6-50bf-4dfe-a470-163d84f86489/segments/3:4:1/Lucid_Origin_A_highly_authentic_and_natural_portrait_of_an_Ind_2.jpg',
+    image: 'https://plain-apac-prod-public.komododecks.com/202610/18/iNStzo2F9oUa8j1hjl6T/image.png',
     results: ['200% Growth', 'Thousands Followers', '5★ Reviews'],
   },
   {
@@ -29,7 +29,7 @@ const testimonials = [
     company: 'Specialty Clinic',
     rating: 5,
     text: 'Outstanding patient acquisition services! Our qualified leads increased by 220% and we consistently rank #1 for orthopedic services in our area. The results speak for themselves.',
-    image: 'https://cdn.leonardo.ai/users/977b066b-49c5-48a9-ab26-d504bdd6846f/generations/b1f747ee-44cb-47c0-9f36-a87391f004c7/segments/1:4:1/Lucid_Origin_A_candid_reallife_photograph_of_an_Indian_male_do_0.jpg',
+    image: 'https://plain-apac-prod-public.komododecks.com/202610/18/KxFYnjZwUMdpGpnxDj6N/image.png',
     results: ['220% Leads', '#1 Ranking', 'Proven Results'],
   },
   {
@@ -38,7 +38,7 @@ const testimonials = [
     company: 'Pediatric Clinic',
     rating: 5,
     text: 'Their healthcare content strategy helped us establish thought leadership in pediatric care. We now get 3x more online appointments and our patient education materials are highly appreciated.',
-    image: 'https://cdn.leonardo.ai/users/977b066b-49c5-48a9-ab26-d504bdd6846f/generations/b1f747ee-44cb-47c0-9f36-a87391f004c7/segments/3:4:1/Lucid_Origin_A_candid_reallife_photograph_of_an_Indian_male_do_2.jpg',
+    image: 'https://plain-apac-prod-public.komododecks.com/202610/18/9Fxcit3RfqC8syKPl8NA/image.png',
     results: ['3x Appointments', 'Thought Leader', 'Patient Trust'],
   },
 ];
